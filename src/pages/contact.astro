@@ -1,8 +1,7 @@
 ---
-// src/pages/contact.astro
 import ContactLayout from '../layouts/Contact.astro';
 
-const title = "Contact Us | Pleasanton Commercial Group";
+const title = "Contact PCG";
 const description = "Get in touch with PCG for confidential automotive business sales and valuations.";
 ---
 
@@ -32,7 +31,12 @@ const description = "Get in touch with PCG for confidential automotive business 
     </section>
 
     <section class="form-container">
-      <form class="contact-form" method="POST" action="/success">
+      <form class="contact-form" method="POST" action="https://formspree.io/f/mkogedlb">
+        
+        <input type="hidden" name="_next" value="/success" />
+
+        <input type="text" name="_gotcha" style="display:none" />
+
         <div class="form-group">
           <label for="name">Full Name</label>
           <input type="text" id="name" name="name" required placeholder="John Doe" />
@@ -116,7 +120,7 @@ const description = "Get in touch with PCG for confidential automotive business 
     text-decoration: none;
     font-weight: bold;
   }
-  
+   
   .info-item a:hover {
     text-decoration: underline;
   }
