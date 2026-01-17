@@ -247,7 +247,7 @@ button {
   }
 
   .header-background {
-	background-image: url('/pcg_banner.png'); /* Path to your image */
+	background-image: url('/pcg_banner_white.png'); /* Path to your image */
 	background-size: cover; /* Ensures the image covers the entire container */
 	background-position: center; /* Centers the image */
 	background-repeat: no-repeat; /* Prevents the image from repeating */
