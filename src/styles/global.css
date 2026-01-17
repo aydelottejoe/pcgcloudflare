@@ -44,7 +44,7 @@ body {
 	line-height: 1.7;
 }
 center {
-	padding-top: 120px;
+	padding-top: 110px;
 }
 main {
 	width: clamp(320px, 70%, 1200px);
