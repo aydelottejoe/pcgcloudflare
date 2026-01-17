@@ -5,6 +5,32 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
+<script client:load>
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1; // Make the element visible
+            entry.target.style.animationPlayState = "running"; // Start the animation
+            observer.unobserve(entry.target); // Stop observing once the animation is triggered
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the element is visible
+      }
+    );
+
+    // Select all testimonial items
+    const testimonialItems = document.querySelectorAll(".testimonial-item");
+    testimonialItems.forEach((item) => {
+      observer.observe(item); // Observe each testimonial item
+    });
+  });
+</script>
+
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -12,7 +38,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<center><img src="/pcg_full.png" alt="Pleasanton Commercial Group" style="vertical-align:middle;margin:25px 0px"></img></center>
+		<center>
+			<div class="header-background">
+			</div>
+		</center>
 		<main>
 			<h1>You Built the Legacy.</h1>
 			<h3>We Help You Secure the Exit.</h3>
@@ -30,6 +59,40 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				looking to retire, relocate, or simply capitalize on your success, we bridge the gap between motivated sellers 
 				and qualified buyers. Our process is designed to be seamless, profitable, and, most importantly, strictly confidential.
 			</p>
+
+			<h2>What Our Clients Say</h2>
+				<div class="testimonials-grid">
+				<div class="testimonial-item">
+					<p>"Pleasanton Commercial Group helped me sell my business quickly and for a great price. Their expertise in the automotive industry is unmatched!"</p>
+					<h4>- John D.</h4>
+					<h5>Auto Shop Owner</h5>
+				</div>
+				<div class="testimonial-item">
+					<p>"The team at PCG made the entire process seamless and stress-free. I couldn't have done it without them!"</p>
+					<h4>- John D.</h4>
+					<h5>Auto Shop Owner</h5>
+				</div>
+				<div class="testimonial-item">
+					<p>"Their confidentiality and professionalism were top-notch. I highly recommend their services to anyone in the automotive industry."</p>
+					<h4>- John D.</h4>
+					<h5>Auto Shop Owner</h5>
+				</div>
+				<div class="testimonial-item">
+					<p>"Thanks to PCG, I was able to retire comfortably and pass my business on to the perfect buyer."</p>
+					<h4>- John D.</h4>
+					<h5>Auto Shop Owner</h5>
+				</div>
+				<div class="testimonial-item">
+					<p>"They understood the unique value of my business and helped me get the best deal possible."</p>
+					<h4>- John D.</h4>
+					<h5>Auto Shop Owner</h5>
+				</div>
+				<div class="testimonial-item">
+					<p>"I was impressed by their network of buyers and their ability to find the right match for my business."</p>
+					<h4>- John D.</h4>
+					<h5>Auto Shop Owner</h5>
+				</div>
+			</div>
 
 
 			<a href="/contact">
@@ -84,3 +147,4 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<Footer />
 	</body>
 </html>
+

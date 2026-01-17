@@ -5,7 +5,9 @@ import { SITE_TITLE } from '../consts';
 
 <header>
 	<nav>
-		<img src="/favicon.svg" alt="PCG" style="width: clamp(60px, 7%, 120px);">
+		<div class = "favicon_logo_header">
+			<img src="/favicon.svg" alt="PCG" style="width: clamp(60px, 5%, 120px);">
+		</div>
 		
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink> 
@@ -45,11 +47,20 @@ import { SITE_TITLE } from '../consts';
 </header>
 <style>
 	header {
+		position: fixed; /* Fix the header to the top of the screen */
+		top: 0; /* Position it at the very top */
+		left: 0; /* Align it to the left */
+		width: 100%; /* Make it span the full width of the screen */
+		z-index: 1000; /* Ensure it stays above other elements */
 		margin: 0;
 		padding: 0 1em;
-		background:rgb(220, 220, 220);
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		background: #183f6a; /* Semi-transparent dark blue */
+		backdrop-filter: blur(10px); /* Add a blur effect for a frosted glass look */
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+		color: white; /* Ensure text is visible on the dark background */
+		border-bottom: 3px solid rgba(255, 255, 255, 0.2); /* Subtle border */
 	}
+
 	h2 {
 		margin: 0;
 		font-size: 1em;
@@ -59,28 +70,105 @@ import { SITE_TITLE } from '../consts';
 	h2 a.active {
 		text-decoration: none;
 	}
+
 	nav {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		padding: 20px; /* Add vertical padding */
 	}
+
 	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
+		padding: 0.5em 1em; /* Adjust padding for links */
+		color: white; /* Change link color to white */
+		font-weight: bold; /* Make links stand out */
+		text-align: center; /* Center the text inside the links */
+		border-bottom: 3px solid transparent; /* Thinner border for a cleaner look */
+		transition: all 0.3s ease; /* Smooth transition for hover effects */
 	}
+
+	nav a:hover {
+		color: rgba(175, 175, 175, 0.92); /* Add hover effect for links */
+		border-bottom-color: rgba(255, 255, 255, 0.2); /* Highlight the link on hover */
+	}
+
+	nav img {
+		border-radius: 50%; /* Make the logo circular */
+		background-color: white; /* Add a white background */
+		padding: 5px; /* Add padding inside the circle */
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+	}
+
 	nav a.active {
 		text-decoration: none;
 		border-bottom-color: var(--accent);
 	}
-	.social-links,
+
+	.internal-links {
+        position: absolute;        /* ADDED: take out of normal flow so it can be centered relative to nav */
+        left: 50%;                /* ADDED */
+        top: 50%;                 /* ADDED */
+        transform: translate(-50%, -50%); /* ADDED: exact centering */
+        display: flex;            /* existing */
+        align-items: center;      /* existing */
+        justify-content: center;  /* existing */
+        gap: 20px;                /* existing */
+        z-index: 1100;            /* ADDED: make sure links sit above other elements */
+        pointer-events: auto;     /* ADDED: ensure links remain clickable */
+    }
+
+	.favicon_logo_header {
+		width
+	}
+
+	.favicon_logo_header,
+    .social-links {
+        display: flex;
+        align-items: center;
+        min-width: 0; /* prevents overflow when items are large */
+    }
+
+	.social-links {
+        gap: 10px;
+        padding: 2px 0px; /* FIXED */
+    }
+
+	.social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5px;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+	/* on small screens, revert internal-links to normal flow so it doesn't overlap icons */
+    @media (max-width: 720px) {
+        nav {
+            padding: 10px;
+        }
+        .internal-links {
+            position: static;      /* OVERRIDE: back in flow */
+            transform: none;
+            top: auto;
+            left: auto;
+        }
+        .social-links {
+            display: none;
+        }
+    }
+
 	.social-links a {
 		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 5px;
+		transition: transform 0.3s ease, color 0.3s ease;
 	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
-		}
+
+	.social-links a:hover {
+		transform: scale(1.2); /* Slightly enlarge on hover */
+		color: rgba(175, 175, 175, 0.92); /* Change color on hover */
 	}
+
 </style>
